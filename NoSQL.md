@@ -34,21 +34,92 @@ O NoSQL é um paradigma de banco de dados não relacional projetado para oferece
 
 ## 5. Operações CRUD
 
-As operações principais para manipulação de dados são:
+Com base nos fundamentos e no mapeamento padrão das operações de banco de dados, as ações principais para manipulação de dados dividem-se em quatro categorias (CRUD):
 
-* **Create:** `insertOne(data, options)`.
-* **Read:** `find(filter, options)` e `findOne(filter, options)`.
-* **Update:** `updateOne(filter, data, options)`, `updateMany(filter, data, options)` e `replaceOne(filter, data, options)`.
-* **Delete:** `deleteOne(filter, options)` e `deleteMany(filter, options)`.
+* **Create (Criar):** 
+  * `insertOne(data, options)`
+  * `insertMany(data, options)`
+* **Read (Ler):** 
+  * `find(filter, options)`
+  * `findOne(filter, options)`
+* **Update (Atualizar):** 
+  * `updateOne(filter, data, options)`
+  * `updateMany(filter, data, options)`
+  * `replaceOne(filter, data, options)`
+* **Delete (Deletar):** 
+  * `deleteOne(filter, options)`
+  * `deleteMany(filter, options)`
 
 ## 6. Comandos Principais (Shell)
 
 Comandos para navegação e manipulação via terminal:
 
 * `mongosh`: Inicia o shell.
-* `show databases` / `show dbs`: Mostra os bancos de dados.
+* `show databases` ou `show dbs`: Mostra os bancos de dados.
 * `use <database>`: Troca para o banco de dados especificado.
 * `show collections`: Lista as coleções.
 * `db.createCollection("<collection_name>")`: Cria uma coleção.
 * `db.<collection_name>.insertOne({<object>})`: Insere um documento.
 * `db.<collection_name>.find()`: Retorna os documentos da coleção.
+
+## 7. Exemplos Práticos de Aplicação
+
+Abaixo estão alguns exemplos práticos de uso dos comandos shell para gerenciar bancos de dados, coleções e documentos no MongoDB:
+
+**Exibir os bancos de dados:**
+```javascript
+show databases
+```
+
+**Criar ou acessar um banco de dados:**
+```javascript
+use loja_informatica
+```
+
+**Criar uma nova collection:**
+```javascript
+db.createCollection("cliente")
+```
+
+**Mostrar todas as collections do banco atual:**
+```javascript
+show collections
+```
+
+**Inserir apenas 1 document (objeto):**
+```javascript
+db.cliente.insertOne({
+   "nome": "jefté",
+   "idade": 35,
+   "pets": ["dora", "sabrina"],
+   "endereco": {
+      "logradouro": "Sossego"
+   }
+})
+```
+
+**Inserir muitos documents de uma vez:**
+```javascript
+db.cliente.insertMany([
+   { "nome": "Brenno" },
+   { "nome": "João" },
+   { "nome": "Maria" },
+   { "nome": "José" },
+   { "nome": "Noé" }
+])
+```
+
+**Mostrar todos os documentos/objetos de uma coleção:**
+```javascript
+db.cliente.find()
+```
+
+**Buscar por um campo específico:**
+```javascript
+db.cliente.find({"nome": "José"})
+```
+
+**Buscar pelo identificador único (ObjectId):**
+```javascript
+db.cliente.find({_id: ObjectId('6a7bbab007ff2cf8649f68a9')})
+```
