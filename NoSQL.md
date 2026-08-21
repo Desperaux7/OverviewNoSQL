@@ -89,11 +89,11 @@ show collections
 **Inserir apenas 1 document (objeto):**
 ```javascript
 db.cliente.insertOne({
-   "nome": "jefté",
-   "idade": 35,
-   "pets": ["dora", "sabrina"],
+   "nome": "gustavo",
+   "idade": 25,
+   "pets": ["thor", "pia"],
    "endereco": {
-      "logradouro": "Sossego"
+      "logradouro": "parque cajueiro"
    }
 })
 ```
